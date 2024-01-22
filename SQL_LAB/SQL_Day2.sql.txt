@@ -1,0 +1,229 @@
+Day-2 Lab:-
+Lab 2→
+
+Q.1) Use the Database and table from Day 1 lab. Insert 5 records in each table.
+
+Ans) /* Inserting 5 records in Student table: */
+Query→  mysql> INSERT INTO Student VALUES
+    -> ('S01', 'John', 'Doe', '1990-01-15', 'Male', 'john.doe@email.com', '1234567890'),
+    -> ('S02', 'Jane', 'Smith', '1992-05-22', 'Female', 'jane.smith@email.com', '9876543210'),
+    -> ('S03', 'Bob', 'Johnson', '1988-08-10', 'Male', 'bob.johnson@email.com', '5551234567'),
+    -> ('S04', 'Alice', 'Williams', '1995-03-03', 'Female', 'alice.williams@email.com', '7890123456'),
+    -> ('S05', 'Charlie', 'Brown', '1993-11-28', 'Male', 'charlie.brown@email.com', '3216549870');
+
+     /* Inserting 5 records in Course table: */
+Query→  mysql> INSERT INTO Course VALUES
+    -> ('C01', 'Python', 5),
+    -> ('C02', 'SQL', 4),
+    -> ('C03', 'Web Development', 10),
+    -> ('C04', 'Data Analysis', 5),
+    -> ('C05', 'Machine Learning', 7);
+
+     /* Inserting 5 records in Instructor table: */
+Query→  mysql> INSERT INTO Instructor VALUES
+    -> ('I01', 'Professor', 'Smith', 'prof.smith@email.com'),
+    -> ('I02', 'Dr.', 'Jones', 'dr.jones@email.com'),
+    -> ('I03', 'Ms.', 'Davis', 'ms.davis@email.com'),
+    -> ('I04', 'Mr.', 'Wilson', 'mr.wilson@email.com'),
+    -> ('I05', 'Dr.', 'Johnson', 'dr.johnson@email.com');
+
+     /* Inserting 5 records in Enrollment table: */
+Query→  mysql> INSERT INTO Enrollment VALUES
+    -> ('E01', '2023-01-15', 'S01', 'C01', 'I01'),
+    -> ('E02', '2023-02-20', 'S02', 'C02', 'I02'),
+    -> ('E03', '2023-03-25', 'S03', 'C03', 'I03'),
+    -> ('E04', '2023-04-30', 'S04', 'C04', 'I04'),
+    -> ('E05', '2023-05-05', 'S05', 'C05', 'I05');
+
+     /* Inserting 5 records in Score table: */
+Query→  mysql> INSERT INTO Score VALUES
+    -> ('SC01', 'C01', 'S01', '2023-01-30', 5),
+    -> ('SC02', 'C02', 'S02', '2023-02-25', 2),
+    -> ('SC03', 'C03', 'S03', '2023-04-01', 8),
+    -> ('SC04', 'C04', 'S04', '2023-05-10', 3),
+    -> ('SC05', 'C05', 'S05', '2023-06-15', 3);
+
+     /* Inserting 5 records in Feedback table: */
+Query→  mysql> INSERT INTO Feedback VALUES
+    -> ('F01', 'S01', '2023-02-05', 'I01', 'Excellent instructor and course!'),
+    -> ('F02', 'S02', '2023-03-10', 'I02', 'Great learning experience.'),
+    -> ('F03', 'S03', '2023-04-20', 'I03', 'The instructor is very knowledgeable.'),
+    -> ('F04', 'S04', '2023-05-25', 'I04', 'Enjoyed the course content.'),
+    -> ('F05', 'S05', '2023-07-01', 'I05', 'Very helpful feedback from the instructor.');
+
+
+Q.2) Use the Database and table from Day 1 lab. Retrieve data from all tables and display.
+
+Ans) /* Retrieving records from Student table: */
+Query→  mysql> SELECT * FROM Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane.smith@email.com     | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+     /* Retrieving records from Course table: */
+Query→  mysql> SELECT * FROM Course;
++----------+------------------+---------+
+| CourseID | CourseTitle      | Credits |
++----------+------------------+---------+
+| C01      | Python           |       5 |
+| C02      | SQL              |       4 |
+| C03      | Web Development  |      10 |
+| C04      | Data Analysis    |       5 |
+| C05      | Machine Learning |       7 |
++----------+------------------+---------+
+
+     /* Retrieving records from Instructor table: */
+Query→  mysql> SELECT * FROM Instructor;
++--------------+-----------+----------+----------------------+
+| InstructorID | FirstName | LastName | Email                |
++--------------+-----------+----------+----------------------+
+| I01          | Professor | Smith    | prof.smith@email.com |
+| I02          | Dr.       | Jones    | dr.jones@email.com   |
+| I03          | Ms.       | Davis    | ms.davis@email.com   |
+| I04          | Mr.       | Wilson   | mr.wilson@email.com  |
+| I05          | Dr.       | Johnson  | dr.johnson@email.com |
++--------------+-----------+----------+----------------------+
+
+     /* Retrieving records from Enrollment table: */
+Query→  mysql> SELECT * FROM Enrollment;
++--------------+----------------+-----------+----------+--------------+
+| EnrollmentID | EnrollmentDate | StudentID | CourseID | InstructorID |
++--------------+----------------+-----------+----------+--------------+
+| E01          | 2023-01-15     | S01       | C01      | I01          |
+| E02          | 2023-02-20     | S02       | C02      | I02          |
+| E03          | 2023-03-25     | S03       | C03      | I03          |
+| E04          | 2023-04-30     | S04       | C04      | I04          |
+| E05          | 2023-05-05     | S05       | C05      | I05          |
++--------------+----------------+-----------+----------+--------------+
+
+     /* Retrieving records from Score table: */
+Query→  mysql> SELECT * FROM Score;
++---------+----------+-----------+------------+----------------+
+| ScoreID | CourseID | StudentID | DateOfExam | CreditObtained |
++---------+----------+-----------+------------+----------------+
+| SC01    | C01      | S01       | 2023-01-30 |              5 |
+| SC02    | C02      | S02       | 2023-02-25 |              2 |
+| SC03    | C03      | S03       | 2023-04-01 |              8 |
+| SC04    | C04      | S04       | 2023-05-10 |              3 |
+| SC05    | C05      | S05       | 2023-06-15 |              3 |
++---------+----------+-----------+------------+----------------+
+
+     /* Retrieving records from Feedback table: */
+Query→  mysql> SELECT * FROM Feedback;
++------------+-----------+------------+----------------+--------------------------------------------+
+| FeedbackID | StudentID | Date       | InstructorName | Feedback                                   |
++------------+-----------+------------+----------------+--------------------------------------------+
+| F01        | S01       | 2023-02-05 | I01            | Excellent instructor and course!           |
+| F02        | S02       | 2023-03-10 | I02            | Great learning experience.                 |
+| F03        | S03       | 2023-04-20 | I03            | The instructor is very knowledgeable.      |
+| F04        | S04       | 2023-05-25 | I04            | Enjoyed the course content.                |
+| F05        | S05       | 2023-07-01 | I05            | Very helpful feedback from the instructor. |
++------------+-----------+------------+----------------+--------------------------------------------+
+
+
+Q.3) ChatGPT Exercise
+	Generating a normalized table using ChatGPT as a continuation of our earlier
+	ChatGPT scenario.
+	Put the below statement in the message box and see what ChatGPT says:
+	I have created a database of emergency contact information. Kindly help me by providing normalized tables with understanding.
+
+Ans) Original Tables:
+
+     Employees (Unnormalized):
+	EmployeeID (Primary Key)
+	FirstName
+	LastName
+	DateOfBirth
+	Gender
+	Department
+	Position
+
+     EmergencyContacts (Unnormalized):
+	ContactID (Primary Key)
+	EmployeeID (Foreign Key referencing Employees table)
+	ContactName
+	Relationship
+	Phone
+	Email
+	Address
+	Notes
+
+     Normalized Tables:
+
+     First Normal Form (1NF):
+     Each table should have a primary key, and each column should contain atomic (indivisible) values.
+
+     Employees (1NF):
+	EmployeeID (Primary Key)
+	FirstName
+	LastName
+	DateOfBirth
+	Gender
+	Department
+	Position
+
+     Contacts (1NF):
+	ContactID (Primary Key)
+	ContactName
+	Relationship
+	Phone
+	Email
+	Address
+	Notes
+
+
+	To implement the normalized tables and relationships, we create the tables in our database and then use the following SQL queries. 
+
+	/* Create Employees Table */
+Query→  mysql> CREATE TABLE IF NOT EXISTS Employees (
+    	EmployeeID INT PRIMARY KEY,
+    	FirstName VARCHAR(50),
+    	LastName VARCHAR(50),
+    	DateOfBirth DATE,
+    	Gender VARCHAR(10),
+    	Department VARCHAR(50),
+    	Position VARCHAR(50)
+	);
+
+	/* Create Contacts Table */
+Query→  mysql> CREATE TABLE IF NOT EXISTS Contacts (
+    	ContactID INT PRIMARY KEY,
+    	ContactName VARCHAR(100),
+    	Relationship VARCHAR(50),
+    	Phone VARCHAR(20),
+    	Email VARCHAR(100),
+    	Address VARCHAR(255),
+    	Notes TEXT
+	);
+
+	/* Create EmployeeContacts Table */
+Query→  mysql> CREATE TABLE IF NOT EXISTS EmployeeContacts (
+    	EmployeeContactID INT PRIMARY KEY,
+    	EmployeeID INT,
+    	ContactID INT,
+    	FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+    	FOREIGN KEY (ContactID) REFERENCES Contacts(ContactID)
+	);
+
+
+	We can then use the following queries to insert data:
+
+	/* Insert an Employee */
+Query→  mysql> INSERT INTO Employees (EmployeeID, FirstName, LastName, DateOfBirth, Gender, Department, Position)
+	VALUES (1, 'John', 'Doe', '1990-05-15', 'Male', 'IT', 'Software Engineer');
+
+	/* Insert a Contact */
+Query→  mysql> INSERT INTO Contacts (ContactID, ContactName, Relationship, Phone, Email, Address, Notes)
+	VALUES (1, 'Jane Doe', 'Spouse', '+1234567890', 'jane@example.com', '123 Main St, Cityville', 'Primary contact');
+
+	/* Insert Employee-Contact Relationship */
+Query→  mysql> INSERT INTO EmployeeContacts (EmployeeContactID, EmployeeID, ContactID)
+	VALUES (1, 1, 1);
+
+	These queries provide a foundation for a normalized database structure with appropriate relationships. 

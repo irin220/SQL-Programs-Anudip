@@ -1,0 +1,52 @@
+Day-8 Lab1:-
+Lab 1→ Use the Student management system Database and table from our previous lab and write a sql query to achieve the below scenario.
+
+Q.1)Assume you are managing a university database that tracks student enrollments in various courses. You have two tables, "Student" and "Enrollment". 
+    The goal is to retrieve information about each student's ID, first name, last name, and their enrollment details, including the enrollment ID and the 
+    associated course ID.
+
+Ans)   /* Retrieving records from Student table: */
+
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S06       | Zayn      | Malik    | 1993-01-12  | Male   | zayn.malik@email.com     | 9872345170 |
+| S07       | Henry     | Cavill   | 1983-05-05  | Male   | henry.cavill@email.com   | 8796541230 |
+| S08       | Ayan      | Khan     | 2007-03-19  | Male   | ayan.khan@email.com      | 7775556660 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+       /* Retrieving records from Enrollment table: */
+
+Query→ mysql> select * from Enrollment;
++--------------+----------------+-----------+----------+--------------+
+| EnrollmentID | EnrollmentDate | StudentID | CourseID | InstructorID |
++--------------+----------------+-----------+----------+--------------+
+| E01          | 2023-01-15     | S01       | C01      | I01          |
+| E02          | 2023-02-20     | S02       | C02      | I02          |
+| E03          | 2023-03-25     | S03       | C03      | I03          |
+| E04          | 2023-04-30     | S04       | C04      | I04          |
+| E05          | 2023-05-05     | S05       | C05      | I05          |
++--------------+----------------+-----------+----------+--------------+
+  
+
+       /* Retrieving information about each student's ID, first name, last name, and their enrollment details, including the enrollment ID and the associated course ID. */
+
+Query→ mysql> select S.StudentID, S.FirstName, S.LastName, E.EnrollmentID, E.CourseID
+    -> from Student S join Enrollment E
+    -> on S.StudentID = E.StudentID;
++-----------+-----------+----------+--------------+----------+
+| StudentID | FirstName | LastName | EnrollmentID | CourseID |
++-----------+-----------+----------+--------------+----------+
+| S01       | John      | Doe      | E01          | C01      |
+| S02       | Jane      | Smith    | E02          | C02      |
+| S03       | Bob       | Johnson  | E03          | C03      |
+| S04       | Alice     | Williams | E04          | C04      |
+| S05       | Charlie   | Brown    | E05          | C05      |
++-----------+-----------+----------+--------------+----------+

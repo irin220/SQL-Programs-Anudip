@@ -1,0 +1,41 @@
+Day-6 Lab1:-
+Lab 1→ Database Schema: Use our database Ecommerce to complete the task.
+
+Task: 
+Q.1) Imagine you are managing an e-commerce platform, and the holiday season is approaching. To capitalize on the festive spirit 
+     and boost sales, you decide to organize a special seasonal sale featuring electronics. The goal is to offer discounts on electronics 
+     and include products with a price less than rs. 70,000 in the promotion. Write a query to find products from the "product" table that 
+     are either in the 'Electronics' category or have a price less than 70000.
+
+
+Ans)   /* Displaying products from the "product" table that are either in the 'Electronics' category or have a price less than 70000. */
+
+Query→ mysql> select * from Product where Category = 'Electronics' or Selling_Price < 70000;
++------------+-----------------+---------------+--------------+----------------+---------------+-------+
+| product_id | product_name    | category      | sub_category | original_price | selling_price | stock |
++------------+-----------------+---------------+--------------+----------------+---------------+-------+
+| P01        | Laptop          | Electronics   | Computers    |          80000 |         80000 |    20 |
+| P02        | Smartphone      | Electronics   | Mobiles      |          50000 |         48000 |    30 |
+| P03        | Television      | Electronics   | TVs          |          60000 |         75000 |    15 |
+| P04        | Headphones      | Electronics   | Audio        |           3000 |          2500 |    50 |
+| P06        | Washing Machine | Appliances    | Laundry      |          35000 |         32000 |    25 |
+| P07        | Men's Watch     | Fashion       | Watches      |           8000 |          7000 |    40 |
+| P08        | Women's Handbag | Fashion       | Bags         |          12000 |         11000 |    15 |
+| P09        | Gaming Console  | Entertainment | Games        |          25000 |         22000 |    10 |
+| P10        | Camera          | Electronics   | Photography  |          40000 |         38000 |    18 |
++------------+-----------------+---------------+--------------+----------------+---------------+-------+
+
+
+
+Q.2) ChatGPT Exercise
+     Using ChatGPT generates SQL queries of the below problem .
+     Scenario 1: Determine the average age of employees in each department from the "employees" table.
+     We have an "Employee" table with the following columns: employee_id,
+     employee_name, department, and salary and you want to find the average salary for
+     each department. Generate the chatGPT prompt for the above scenario.
+
+Ans)   /* Determining the average age of employees in each department from the "employees" table. */
+
+Query→ mysql>  SELECT department, AVG(salary) AS average_salary
+	FROM Employee
+	GROUP BY department;

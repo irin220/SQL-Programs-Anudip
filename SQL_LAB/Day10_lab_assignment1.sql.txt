@@ -1,0 +1,106 @@
+Day-10 Lab1:-
+Lab 1→ Use the same student management system Database and table from previous lab.Perform the following commands on the table Student and Enrollment.
+
+Q.1) Assume a university where students can enroll in various courses.Now, write down a FULL outer JOIN query to retrieve the details.
+
+Ans)   /* Retrieving records from Student table: */
+
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S06       | Zayn      | Malik    | 1993-01-12  | Male   | zayn.malik@email.com     | 9872345170 |
+| S07       | Henry     | Cavill   | 1983-05-05  | Male   | henry.cavill@email.com   | 8796541230 |
+| S08       | Ayan      | Khan     | 2007-03-19  | Male   | ayan.khan@email.com      | 7775556660 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+       /* Retrieving records from Enrollment table: */
+
+Query→ mysql> select * from Enrollment;
++--------------+----------------+-----------+----------+--------------+
+| EnrollmentID | EnrollmentDate | StudentID | CourseID | InstructorID |
++--------------+----------------+-----------+----------+--------------+
+| E01          | 2023-01-15     | S01       | C01      | I01          |
+| E02          | 2023-02-20     | S02       | C02      | I02          |
+| E03          | 2023-03-25     | S03       | C03      | I03          |
+| E04          | 2023-04-30     | S04       | C04      | I04          |
+| E05          | 2023-05-05     | S05       | C05      | I05          |
++--------------+----------------+-----------+----------+--------------+
+
+
+       /* Retrieving records from Student table and Enrollment table by performing FULL OUTER JOIN. */
+
+Query→ mysql> select S.StudentID, S.FirstName, S.LastName, S.Email, E.EnrollmentID, E.CourseID
+    -> from Student S left join Enrollment E
+    -> on S.StudentID = E.StudentID
+    -> union all
+    -> select S.StudentID, S.FirstName, S.LastName, S.Email, E.EnrollmentID, E.CourseID
+    -> from Student S right join Enrollment E
+    -> on S.StudentID = E.StudentID
+    -> where S.StudentID is null;
++-----------+-----------+----------+--------------------------+--------------+----------+
+| StudentID | FirstName | LastName | Email                    | EnrollmentID | CourseID |
++-----------+-----------+----------+--------------------------+--------------+----------+
+| S01       | John      | Doe      | john.doe@email.com       | E01          | C01      |
+| S02       | Jane      | Smith    | jane_Smith@example.com   | E02          | C02      |
+| S03       | Bob       | Johnson  | bob.johnson@email.com    | E03          | C03      |
+| S04       | Alice     | Williams | alice.williams@email.com | E04          | C04      |
+| S05       | Charlie   | Brown    | charlie.brown@email.com  | E05          | C05      |
+| S06       | Zayn      | Malik    | zayn.malik@email.com     | NULL         | NULL     |
+| S07       | Henry     | Cavill   | henry.cavill@email.com   | NULL         | NULL     |
+| S08       | Ayan      | Khan     | ayan.khan@email.com      | NULL         | NULL     |
++-----------+-----------+----------+--------------------------+--------------+----------+
+
+
+
+Q.2) Assume a university where students can enroll in various courses.Now, write down a Natural JOIN query to retrieve the details.
+
+Ans)   /* Retrieving records from Student table: */
+
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S06       | Zayn      | Malik    | 1993-01-12  | Male   | zayn.malik@email.com     | 9872345170 |
+| S07       | Henry     | Cavill   | 1983-05-05  | Male   | henry.cavill@email.com   | 8796541230 |
+| S08       | Ayan      | Khan     | 2007-03-19  | Male   | ayan.khan@email.com      | 7775556660 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+       /* Retrieving records from Enrollment table: */
+
+Query→ mysql> select * from Enrollment;
++--------------+----------------+-----------+----------+--------------+
+| EnrollmentID | EnrollmentDate | StudentID | CourseID | InstructorID |
++--------------+----------------+-----------+----------+--------------+
+| E01          | 2023-01-15     | S01       | C01      | I01          |
+| E02          | 2023-02-20     | S02       | C02      | I02          |
+| E03          | 2023-03-25     | S03       | C03      | I03          |
+| E04          | 2023-04-30     | S04       | C04      | I04          |
+| E05          | 2023-05-05     | S05       | C05      | I05          |
++--------------+----------------+-----------+----------+--------------+
+
+
+       /* Retrieving records from Student table and Enrollment table by performing NATURAL JOIN. */
+
+Query→ mysql> select StudentID, FirstName, LastName, Gender, EnrollmentID, CourseID from Student natural join Enrollment;
++-----------+-----------+----------+--------+--------------+----------+
+| StudentID | FirstName | LastName | Gender | EnrollmentID | CourseID |
++-----------+-----------+----------+--------+--------------+----------+
+| S01       | John      | Doe      | Male   | E01          | C01      |
+| S02       | Jane      | Smith    | Female | E02          | C02      |
+| S03       | Bob       | Johnson  | Male   | E03          | C03      |
+| S04       | Alice     | Williams | Female | E04          | C04      |
+| S05       | Charlie   | Brown    | Male   | E05          | C05      |
++-----------+-----------+----------+--------+--------------+----------+

@@ -1,0 +1,58 @@
+Day-5 Lab1:-
+Lab 1→ Database Schema: Use the same database scheme created in Previous Lab.
+
+Task: 
+Q.1) Let's consider a scenario where you want to retrieve information about students from a database 
+     table named student and display the results in ascending order based on their last names.
+
+Ans)   /* Retrieving information about students from Student table and displaying the results in ascending order based on their last names. */
+
+Query→ mysql> select * from Student order by LastName asc;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+
+Day-5 Lab2:-
+Lab 2→ Database Schema: Use the same database scheme created in Previous Lab.
+
+Task: 
+Q.2) Let's consider a scenario where you want to count the number of students based
+     on their gender from a database table named Student. 
+
+Ans)   /* Counting the number of students based on their gender from Student table. */
+
+Query→ mysql> select Gender, count(*) as GenderCount from Student group by Gender;
++--------+-------------+
+| Gender | GenderCount |
++--------+-------------+
+| Male   |           3 |
+| Female |           2 |
++--------+-------------+
+
+
+
+Q.3) ChatGPT Exercise
+     Using ChatGPT generates SQL queries of the below problem .
+     Scenario 1:Library Books
+     Given a table called books with columns book_id, title, and author_id, write a query to
+     count the number of books written by each author, ordering the results by the author's
+     name without using a join clause.
+
+Ans)   /* Counting the number of books written by each author, ordering the results by the author's name without using a join clause. */   
+
+mysql>  SELECT author_id, COUNT(book_id) AS books_count
+	FROM books
+	GROUP BY author_id
+	ORDER BY (
+    	SELECT author_name
+    	FROM authors
+    	WHERE authors.author_id = books.author_id
+	) ASC;

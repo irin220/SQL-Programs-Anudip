@@ -1,0 +1,236 @@
+Day-1 Lab:-
+Lab 1→
+
+Q.1) Create a Database & Table Using MySQL Command-Line Client.
+	● Create a database with the name StudentManagementSystem.
+
+Query→ mysql> create database StudentManagementSystem;
+
+       mysql> use StudentManagementSystem;
+
+
+Q.2) Create a table with named Student with attributes:
+	● StudentID (Primary Key)
+	● FirstName
+	● LastName
+	● DateOfBirth
+	● Gender
+	● Email
+	● Phone
+
+Query→ mysql> create table Student(
+    -> StudentID varchar(10) PRIMARY KEY,
+    -> FirstName varchar(20) NOT NULL,
+    -> LastName varchar(20) NOT NULL,
+    -> DateOfBirth date,
+    -> Gender varchar(10),
+    -> Email varchar(50) NOT NULL,
+    -> Phone bigint;
+    -> );
+
+       mysql> desc Student;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| StudentID   | varchar(10) | NO   | PRI | NULL    |       |
+| FirstName   | varchar(20) | NO   |     | NULL    |       |
+| LastName    | varchar(20) | NO   |     | NULL    |       |
+| DateOfBirth | date        | YES  |     | NULL    |       |
+| Gender      | varchar(10) | YES  |     | NULL    |       |
+| Email       | varchar(20) | NO   |     | NULL    |       |
+| Phone       | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+
+Q.3) Create a table with name Course with attributes:
+	● CourseID (Primary Key)
+	● CourseTitle
+	● Credits
+
+Query→ mysql> create table Course(
+    -> CourseID varchar(10) PRIMARY KEY,
+    -> CourseTitle varchar(20) NOT NULL,
+    -> Credits integer(10) NOT NULL
+    -> );
+
+       mysql> desc Course;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| CourseID    | varchar(10) | NO   | PRI | NULL    |       |
+| CourseTitle | varchar(20) | NO   |     | NULL    |       |
+| Credits     | int         | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+
+Q.4) Create a table with named Instructor with attributes:
+	● InstructorID (Primary Key)
+	● FirstName
+	● LastName
+	● Email
+
+Query→ mysql> create table Instructor(
+    -> InstructorID varchar(10) PRIMARY KEY,
+    -> FirstName varchar(20) NOT NULL,
+    -> LastName varchar(20) NOT NULL,
+    -> Email varchar(50) NOT NULL
+    -> );
+
+       mysql> desc Instructor;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| InstructorID | varchar(10) | NO   | PRI | NULL    |       |
+| FirstName    | varchar(20) | NO   |     | NULL    |       |
+| LastName     | varchar(20) | NO   |     | NULL    |       |
+| Email        | varchar(50) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+
+Q.5) Create a table with named Enrollment with attributes:
+	● EnrollmentID (Primary Key)
+	● EnrollmentDate
+	● StudentID(Foreign key)
+	● CourseID(Foreign Key)
+	● InstructorID(Foreign key)
+
+Query→ mysql> create table Enrollment(
+    -> EnrollmentID varchar(10) PRIMARY KEY,
+    -> EnrollmentDate date,
+    -> StudentID varchar(10),
+    -> FOREIGN KEY(StudentID) references Student(StudentID),
+    -> CourseID varchar(10),
+    -> FOREIGN KEY(CourseID) references Course(CourseID),
+    -> InstructorID varchar(10),
+    -> FOREIGN KEY(InstructorID) references Instructor(InstructorID)
+    -> );
+
+       mysql> desc Enrollment;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| EnrollmentID   | varchar(10) | NO   | PRI | NULL    |       |
+| EnrollmentDate | date        | YES  |     | NULL    |       |
+| StudentID      | varchar(10) | YES  | MUL | NULL    |       |
+| CourseID       | varchar(10) | YES  | MUL | NULL    |       |
+| InstructorID   | varchar(10) | YES  | MUL | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+
+
+Q.6) Create a table with named Score with attributes:
+	● ScoreID (Primary Key)
+	● CourseID (Foreign key)
+	● StudentID (Foreign Key)
+	● DateOfExam
+	● CreditObtained
+
+Query→ mysql> create table Score(
+    -> ScoreID varchar(10) PRIMARY KEY,
+    -> CourseID varchar(10),
+    -> FOREIGN KEY(CourseID) references Course(CourseID),
+    -> StudentID varchar(10),
+    -> FOREIGN KEY(StudentID) references Student(StudentID),
+    -> DateOfExam date NOT NULL,
+    -> CreditObtained integer(10) NOT NULL
+    -> );
+
+       mysql> desc Score;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| ScoreID        | varchar(10) | NO   | PRI | NULL    |       |
+| CourseID       | varchar(10) | YES  | MUL | NULL    |       |
+| StudentID      | varchar(10) | YES  | MUL | NULL    |       |
+| DateOfExam     | date        | NO   |     | NULL    |       |
+| CreditObtained | int         | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+
+
+Q.7) Create a table with named Feedback with attributes:
+	● FeedbackID (Primary Key)
+	● StudentID (Foreign key)
+	● Date
+	● InstructorName
+	● Feedback
+
+Query→ mysql> create table Feedback(
+    -> FeedbackID varchar(10) PRIMARY KEY,
+    -> StudentID varchar(10),
+    -> FOREIGN KEY(StudentID) references Student(StudentID),
+    -> Date date,
+    -> InstructorName varchar(10) NOT NULL,
+    -> Feedback varchar(50)
+    -> );
+
+       mysql> desc Feedback;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| FeedbackID     | varchar(10) | NO   | PRI | NULL    |       |
+| StudentID      | varchar(10) | YES  | MUL | NULL    |       |
+| Date           | date        | YES  |     | NULL    |       |
+| InstructorName | varchar(10) | NO   |     | NULL    |       |
+| Feedback       | varchar(100) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+
+
+Q.8) ChatGPT Exercise
+	Using ChatGPT generate the Database design
+	Scenario: Implementing Database Design
+	The database should store emergency contact information for each employee. This information is 
+	crucial for situations where immediate contact with family or emergency contacts is necessary. 
+	The design should consider privacy and security measures for sensitive contact details.
+	Use the chatGPT prompt to formulate the database design for the described scenario.
+
+Query→  mysql> CREATE DATABASE IF NOT EXISTS EmployeeEmergencyContactsDB;
+
+	mysql> USE EmployeeEmergencyContactsDB;
+
+	mysql> CREATE TABLE IF NOT EXISTS Employees (
+    -> EmployeeID INT PRIMARY KEY,
+    -> FirstName VARCHAR(50),
+    -> LastName VARCHAR(50),
+    -> DateOfBirth DATE,
+    -> Gender VARCHAR(10),
+    -> Department VARCHAR(50),
+    -> Position VARCHAR(50)
+    -> );
+
+	mysql> desc Employees;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| EmployeeID  | int         | NO   | PRI | NULL    |       |
+| FirstName   | varchar(50) | YES  |     | NULL    |       |
+| LastName    | varchar(50) | YES  |     | NULL    |       |
+| DateOfBirth | date        | YES  |     | NULL    |       |
+| Gender      | varchar(10) | YES  |     | NULL    |       |
+| Department  | varchar(50) | YES  |     | NULL    |       |
+| Position    | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+	mysql> CREATE TABLE IF NOT EXISTS EmergencyContacts (
+    ->     ContactID INT PRIMARY KEY,
+    ->     EmployeeID INT,
+    ->     ContactName VARCHAR(100),
+    ->     Relationship VARCHAR(50),
+    ->     Phone VARCHAR(20),
+    ->     Email VARCHAR(100),
+    ->     Address VARCHAR(255),
+    ->     Notes TEXT,
+    ->     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+    -> );
+	
+	mysql> desc EmergencyContacts;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| ContactID    | int          | NO   | PRI | NULL    |       |
+| EmployeeID   | int          | YES  | MUL | NULL    |       |
+| ContactName  | varchar(100) | YES  |     | NULL    |       |
+| Relationship | varchar(50)  | YES  |     | NULL    |       |
+| Phone        | varchar(20)  | YES  |     | NULL    |       |
+| Email        | varchar(100) | YES  |     | NULL    |       |
+| Address      | varchar(255) | YES  |     | NULL    |       |
+| Notes        | text         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+

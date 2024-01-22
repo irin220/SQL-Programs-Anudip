@@ -1,0 +1,188 @@
+Day-3 Lab1:-
+Lab 1→ For this assignment, please use the same tables created in your previous lab session.
+
+Task 1: 
+Q.1) Update the Student table with the following information:
+     Change the email to 'jane_Smith@example.com' Where FirstName is 'Jane' and LastName is 'Smith';
+
+       /* Updating the Student table and changing the email to 'jane_Smith@example.com' where FirstName is 'Jane' and LastName is 'Smith' */
+Query→ mysql> update Student set Email = 'jane_Smith@example.com' where FirstName = 'Jane' and LastName = 'Smith';
+
+       /* Displaying the updated record */
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+Q.2) Update the Instructor with the following information:
+     Change the email to 'mr.wilson22@example.com' Where FirstName of the instructor is 'Mr.' and LastName = 'Wilson';
+
+       /* Updating the Instructor table and changing the email to 'mr.wilson22@example.com' where FirstName = 'Mr.' and LastName = 'Wilson' */
+Query→ mysql> update Instructor set Email = 'mr.wilson22@example.com' where FirstName = 'Mr.' and LastName = 'Wilson';
+
+       /* Displaying the updated record */
+Query→ mysql> select * from Instructor;
++--------------+-----------+----------+-------------------------+
+| InstructorID | FirstName | LastName | Email                   |
++--------------+-----------+----------+-------------------------+
+| I01          | Professor | Smith    | prof.smith@email.com    |
+| I02          | Dr.       | Jones    | dr.jones@email.com      |
+| I03          | Ms.       | Davis    | ms.davis@email.com      |
+| I04          | Mr.       | Wilson   | mr.wilson22@example.com |
+| I05          | Dr.       | Johnson  | dr.johnson@email.com    |
++--------------+-----------+----------+-------------------------+
+
+
+Task 2:
+Q.3) Delete record from the Student table on following condition:
+     Delete student/students records from the Student table where last name is Salvatore.
+
+       /* Deleting record from the Student table where last name is Salvatore */
+Query→ mysql> delete from Student where LastName = 'Salvatore';
+
+       /* Displaying the record after deletion */
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+Task 3: 
+Q.4) List the student whose first name starts with J.
+
+       /* Retrieving the Student details from Student table whose first name starts with J */
+Query→ mysql> select * from Student where FirstName like 'J%';
++-----------+-----------+----------+-------------+--------+------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                  | Phone      |
++-----------+-----------+----------+-------------+--------+------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com     | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com | 9876543210 |
++-----------+-----------+----------+-------------+--------+------------------------+------------+
+
+
+
+Day-3 Lab2:-
+Lab 2→ Database Schema:
+       Consider a simple database with one tables: Employee
+       Employee Table:
+       ● Columns: emp_id (Primary Key), first_name, last_name, age, email
+
+       /* Creating a simple datbase named Employees */
+Query→ mysql> create database Employees;
+       mysql> use Employees;
+
+       /* Creating a table named Employee in the Employees datbase */
+Query→ mysql> create table Employee(
+    -> emp_id varchar(10) PRIMARY KEY,
+    -> first_name varchar(20) NOT NULL,
+    -> last_name varchar(20) NOT NULL,
+    -> age int(5),
+    -> email varchar(50) NOT NULL
+    -> );
+
+       /* Description of Employeee table */
+Query→ mysql> desc Employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | varchar(10) | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | NO   |     | NULL    |       |
+| last_name  | varchar(20) | NO   |     | NULL    |       |
+| age        | int         | YES  |     | NULL    |       |
+| email      | varchar(50) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+Task 1: Insert Data
+Q.5) Write an SQL INSERT statement to insert data into the Employee table.
+
+       /* Inserting 5 records in Employee table: */
+Query→ mysql> insert into Employee values
+    -> ('E01', 'John', 'Doe', 32, 'john.doe@email.com'),
+    -> ('E02', 'Jane', 'Smith', 35, 'jane.smith@email.com'),
+    -> ('E03', 'Bob', 'Johnson', 30, 'bob.johnson@email.com'),
+    -> ('E04', 'Alice', 'Williams', 27, 'alice.williams@email.com'),
+    -> ('E05', 'Charlie', 'Brown', 25, 'charlie.brown@email.com');
+
+      /* Retrieving records from Employee table: */
+Query→ mysql> select * from Employee;
++--------+------------+-----------+------+--------------------------+
+| emp_id | first_name | last_name | age  | email                    |
++--------+------------+-----------+------+--------------------------+
+| E01    | John       | Doe       |   32 | john.doe@email.com       |
+| E02    | Jane       | Smith     |   35 | jane.smith@email.com     |
+| E03    | Bob        | Johnson   |   30 | bob.johnson@email.com    |
+| E04    | Alice      | Williams  |   27 | alice.williams@email.com |
+| E05    | Charlie    | Brown     |   25 | charlie.brown@email.com  |
++--------+------------+-----------+------+--------------------------+
+
+Task 2: Retrieving Data
+Q.6) Write an SQL SELECT statement to retrieve the first_name and last_name of all employees from the Employee table.       
+
+       /* Retrieving the first_name and last_name of all employees from the Employee table */
+Query→ mysql> select first_name, last_name from Employee;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| John       | Doe       |
+| Jane       | Smith     |
+| Bob        | Johnson   |
+| Alice      | Williams  |
+| Charlie    | Brown     |
++------------+-----------+
+
+Task 3: Filtering Data
+Q.7) Write an SQL SELECT statement to retrieve the first_name, last_name, and age of employees who are older than 30 years.
+
+       /* Retrieving the first_name, last_name, and age of employees who are older than 30 years */
+Query→ mysql> select first_name, last_name, age from Employee where age>30;
++------------+-----------+------+
+| first_name | last_name | age  |
++------------+-----------+------+
+| John       | Doe       |   32 |
+| Jane       | Smith     |   35 |
++------------+-----------+------+
+
+Task 4: Updating Data
+Q.8) Write an SQL UPDATE statement to increase the age of employees by 1 year for all employees older than 25. 
+
+       /* Updating the Employee table and increasing the age of employees by 1 year for all employees older than 25 */
+Query→ mysql> update Employee set age = age+1 where age>25;
+
+       /* Displaying the updated record */
+Query→ mysql> select * from Employee;
++--------+------------+-----------+------+--------------------------+
+| emp_id | first_name | last_name | age  | email                    |
++--------+------------+-----------+------+--------------------------+
+| E01    | John       | Doe       |   33 | john.doe@email.com       |
+| E02    | Jane       | Smith     |   36 | jane.smith@email.com     |
+| E03    | Bob        | Johnson   |   31 | bob.johnson@email.com    |
+| E04    | Alice      | Williams  |   28 | alice.williams@email.com |
+| E05    | Charlie    | Brown     |   25 | charlie.brown@email.com  |
++--------+------------+-----------+------+--------------------------+
+
+
+
+Q.9) ChatGPT Exercise
+     Using ChatGPT generates SQL queries to update the Employee salary.
+     Scenario:
+     Due to a pricing adjustment, the company decided to increase the salary of all employees by 10%. 
+     Create an SQL update query to apply this change selectively to employees with a specific job title, say 'Manager.'
+
+Ans) Here's an SQL UPDATE statement to increase the salary of employees by 10% for those with the job title 'Manager':
+     Assuming there is a column named Salary and another named JobTitle in the Employees table, 
+     this query multiplies the current salary by 0.1 for all employees with the job title 'Manager'. 
+
+       /* Updating the Employees table and increasing the salary of employees by 10% for those with the job title 'Manager' */
+Query→ UPDATE Employees SET Salary = Salary + (Salary * 0.1) WHERE JobTitle = 'Manager';

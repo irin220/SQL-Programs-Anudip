@@ -1,0 +1,235 @@
+Day-7:-
+Assignment 1→ Database Schema: Use the same database scheme created in previous lab.
+
+Task1: 
+Q.1) Assume you are managing a database of student records, and you need to retrieve information about students born after June 16, 2009. 
+     What will be the sql query for this?
+
+Ans)   /* Retrieving records from Student table: */
+
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S06       | Zayn      | Malik    | 1993-01-12  | Male   | zayn.malik@email.com     | 9872345170 |
+| S07       | Henry     | Cavill   | 1983-05-05  | Male   | henry.cavill@email.com   | 8796541230 |
+| S08       | Ayan      | Khan     | 2007-03-19  | Male   | ayan.khan@email.com      | 7775556660 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+   
+       /* Retrieving information about students from Student table born after June 16, 1990. */
+
+Query→ mysql> SELECT * FROM Student WHERE DateOfBirth > '1990-06-16';
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+Task2: 
+Q.2) Assume you have a database containing a "Student" table with information about students, including their first names. 
+     You want to retrieve records of students whose first names start with either 'A' or 'J'. To achieve this,what will be your sql query?
+
+Ans)   /* Retrieving records from Student table: */
+
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S06       | Zayn      | Malik    | 1993-01-12  | Male   | zayn.malik@email.com     | 9872345170 |
+| S07       | Henry     | Cavill   | 1983-05-05  | Male   | henry.cavill@email.com   | 8796541230 |
+| S08       | Ayan      | Khan     | 2007-03-19  | Male   | ayan.khan@email.com      | 7775556660 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+   
+
+       /* Retrieving records of students whose first names start with either 'A' or 'J'. */
+
+Query→ mysql> SELECT * FROM Student WHERE FirstName LIKE 'A%' OR FirstName LIKE 'J%';
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+
+
+Task3: 
+Q.3) Let's consider a scenario where you have a database with a "Student" table that contains information about students, 
+     including their first names and email addresses. You want to retrieve records of students whose first name is not 'Alice' 
+     and whose email addresses contain the domain '@example.com'. To achieve this, what will be your sql query?
+
+Ans)   /* Retrieving records from Student table: */
+
+Query→ mysql> select * from Student;
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                    | Phone      |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+| S01       | John      | Doe      | 1990-01-15  | Male   | john.doe@email.com       | 1234567890 |
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com   | 9876543210 |
+| S03       | Bob       | Johnson  | 1988-08-10  | Male   | bob.johnson@email.com    | 5551234567 |
+| S04       | Alice     | Williams | 1995-03-03  | Female | alice.williams@email.com | 7890123456 |
+| S05       | Charlie   | Brown    | 1993-11-28  | Male   | charlie.brown@email.com  | 3216549870 |
+| S06       | Zayn      | Malik    | 1993-01-12  | Male   | zayn.malik@email.com     | 9872345170 |
+| S07       | Henry     | Cavill   | 1983-05-05  | Male   | henry.cavill@email.com   | 8796541230 |
+| S08       | Ayan      | Khan     | 2007-03-19  | Male   | ayan.khan@email.com      | 7775556660 |
++-----------+-----------+----------+-------------+--------+--------------------------+------------+
+   
+
+       /* Retrieving records of students whose first name is not 'Alice' and whose email addresses contain the domain '@example.com'. */
+
+Query→ mysql> SELECT * FROM Student WHERE FirstName <> 'Alice' AND Email LIKE '%@example.com%';
++-----------+-----------+----------+-------------+--------+------------------------+------------+
+| StudentID | FirstName | LastName | DateOfBirth | Gender | Email                  | Phone      |
++-----------+-----------+----------+-------------+--------+------------------------+------------+
+| S02       | Jane      | Smith    | 1992-05-22  | Female | jane_Smith@example.com | 9876543210 |
++-----------+-----------+----------+-------------+--------+------------------------+------------+
+
+
+
+
+Day-7:-
+Assignment 2→ 
+
+Task1: 
+Q.4) Create a table Person with PersonID int, FirstName varchar(20), LastName varchar(20) and age (int). Make PersonID PRIMARY KEY.
+
+Ans)   /* Creating table Person. */
+
+Query→ mysql> CREATE TABLE Person (
+    -> PersonID INT PRIMARY KEY,
+    -> FirstName VARCHAR(20),
+    -> LastName VARCHAR(20),
+    -> Age INT
+    -> );
+
+       /* Description of Person table. */
+
+Query→ mysql> DESC Person;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| PersonID  | int         | NO   | PRI | NULL    |       |
+| FirstName | varchar(20) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| Age       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+
+Task2: 
+Q.5) Create a table Employee with emp_id int, first_name varchar(20), last_name varchar(20) and age (int). Make emp_id PRIMARY KEY
+
+Ans)   /* Creating table Employee. */
+
+Query→ mysql> CREATE TABLE Employee (
+    -> emp_id INT PRIMARY KEY,
+    -> first_name VARCHAR(20),
+    -> last_name VARCHAR(20),
+    -> age INT
+    -> );
+
+       /* Description of Employee table. */
+
+Query→ mysql> DESC Employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| age        | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+
+Task3: 
+Q.6) Insert data to Person table.
+
+Ans)   /* Inserting data into Person table. */
+
+Query→ mysql> INSERT INTO Person VALUES
+    -> (1, 'John', 'Doe', 25),
+    -> (2, 'Jane', 'Smith', 30),
+    -> (3, 'Bob', 'Johnson', 28);
+
+       /* Displaying all records of Person table. */
+
+Query→ mysql> SELECT * FROM Person;
++----------+-----------+----------+------+
+| PersonID | FirstName | LastName | Age  |
++----------+-----------+----------+------+
+|        1 | John      | Doe      |   25 |
+|        2 | Jane      | Smith    |   30 |
+|        3 | Bob       | Johnson  |   28 |
++----------+-----------+----------+------+
+
+
+Task4: 
+Q.7) Insert data to Employee table.
+
+Ans)   /* Inserting data into Employee table. */
+
+Query→ mysql> INSERT INTO Employee VALUES
+    -> (101, 'Alice', 'Williams', 35),
+    -> (102, 'Charlie', 'Brown', 32),
+    -> (103, 'Eva', 'Green', 29);
+
+       /* Displaying all records of Employee table. */
+
+Query→ mysql> SELECT * FROM Employee;
++--------+------------+-----------+------+
+| emp_id | first_name | last_name | age  |
++--------+------------+-----------+------+
+|    101 | Alice      | Williams  |   35 |
+|    102 | Charlie    | Brown     |   32 |
+|    103 | Eva        | Green     |   29 |
++--------+------------+-----------+------+
+
+
+Task5: 
+Q.8) Create Union of two tables.
+
+Ans)   /* Creating Union of person and Employee tables. */
+
+Query→ mysql> SELECT * FROM Person UNION SELECT * FROM Employee;
++----------+-----------+----------+------+
+| PersonID | FirstName | LastName | Age  |
++----------+-----------+----------+------+
+|        1 | John      | Doe      |   25 |
+|        2 | Jane      | Smith    |   30 |
+|        3 | Bob       | Johnson  |   28 |
+|      101 | Alice     | Williams |   35 |
+|      102 | Charlie   | Brown    |   32 |
+|      103 | Eva       | Green    |   29 |
++----------+-----------+----------+------+
+
+
+
+
+Q.9) ChatGPT Exercise
+     Using ChatGPT generate SQL queries of the below problem .
+     Scenario 1: In a student grades database with tables for courses and grades, find the courses where the average grade is 
+     below a 'C' (consider 'C' as a passing grade). We have a "Course" table with the following columns:
+     CourseId,CourseName,CreditHours and "Grade" table with the following a columns: StudentId(Foreign Key),CourseID(Foreign Key),Grade.
+     You want to find courses where the average grade is below a "C". Generate the ChatGPT prompt for creating the queries for the above requirement.
+
+Ans)   /* Finding the courses where the average grade is below a 'C' */
+
+Query→ mysql> SELECT c.CourseId, c.CourseName, AVG(g.Grade) AS AverageGrade
+       FROM Course c
+       JOIN Grade g ON c.CourseId = g.CourseId
+       GROUP BY c.CourseId, c.CourseName
+       HAVING AVG(g.Grade) < 70;
